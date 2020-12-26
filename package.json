@@ -1,0 +1,27 @@
+{
+  "name": "generic-rrweb-recorder",
+  "version": "1.0.0",
+  "description": "![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/srcs/recorder.js)\r ![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/min/srcs/recorder.min.js?label=Minified_version)\r ![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/srcs/recorder.js?compression=gzip)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yessine1mallouli/generic-rrweb-recorder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yessine1mallouli/generic-rrweb-recorder/issues"
+  },
+  "homepage": "https://github.com/yessine1mallouli/generic-rrweb-recorder#readme",
+  "keywords": [],
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

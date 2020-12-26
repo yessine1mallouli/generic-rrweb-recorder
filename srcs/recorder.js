@@ -115,10 +115,13 @@ let debugLog;
  * @param {Array of String} src The path(s) of the script (can be relative or absolute)
  * @param {Function} cb Callback, function to launch when loaded
 */
+
+const { logger } = require('./util')
+
 function loadJS(src, cb) {	
 	var ref = document.getElementsByTagName("script")[0];
 
-	for (i = 0; i < src.length; i++) {
+	for (var i = 0; i < src.length; i++) {
 		var script = document.createElement("script");
 		script.src = src[i];
 		ref.parentNode.insertBefore(script, ref);
@@ -163,10 +166,7 @@ function millisToMinutesAndSeconds(millis) {
  * Check if log has been activated and print stringLog if so.
  * @param {string} String to print if log is activated.
  */
-function logger(stringLog){
-	if (debugLog)
-		console.log("generic-rrweb-recorder: " + stringLog);
-}
+
 
 function compileDataForDownload(audioParts) {
 	//avoid concatenating if there is only one element
@@ -512,3 +512,4 @@ class Recorder {
 		window.open(getRightLibPath(this.config, "postEdit/newEdit.html"));
 	}
 }
+exports.debugLog=debugLog;
