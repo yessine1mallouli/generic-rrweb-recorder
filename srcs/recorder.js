@@ -513,3 +513,4 @@ class Recorder {
 	}
 }
 exports.debugLog=debugLog;
+console.log("tst");
