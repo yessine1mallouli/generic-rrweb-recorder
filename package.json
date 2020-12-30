@@ -2,12 +2,14 @@
   "name": "generic-rrweb-recorder",
   "version": "1.0.0",
   "description": "![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/srcs/recorder.js)\r ![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/min/srcs/recorder.min.js?label=Minified_version)\r ![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/srcs/recorder.js?compression=gzip)",
-  "main": "index.js",
+  "main": "recorder.js",
   "directories": {
     "doc": "docs",
     "lib": "lib"
   },
+  
   "scripts": {
+    "start": "node ./srcs/recorder.js",
     "test": "jest"
   },
   "repository": {

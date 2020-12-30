@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 8888
 
-CMD ["node", "./srcs/recorder.js"]
+CMD ["npm", "start"]
