@@ -1,10 +1,6 @@
-pipeline  {
-    agent any
-    stages{
-        stage('SCM Checkout'){
+node{
+    stage('SCM Checkout'){
         git credentialsId: 'git-creds', url: 'https://github.com/yessine1mallouli/generic-rrweb-recorder'
-    
-        workspace=pwd()
     }
     stage('Build')
     {
@@ -12,7 +8,6 @@ pipeline  {
         nodejs('node') {
     // some block
     sh "npm install"
-    sh "npm start"
 }
     }
     stage('Unit testing')
@@ -37,6 +32,5 @@ pipeline  {
         sh "docker login -u yessinemallouli -p ${dockerHubPwd}"
     }
         sh 'docker push yessinemallouli/generic-rrweb-recorder:1.0'
-    }
     }
 }
