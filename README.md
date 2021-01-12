@@ -8,7 +8,7 @@
 
 Generic-rrweb-recorder is a tool to record the dom of a web page as well as the sound of the microphone.
 
-The advantage compared to a video?
+The advantage compared to a video?!
 
 You can copy/paste the text, and the files are extremely light!
 
