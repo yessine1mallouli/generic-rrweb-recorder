@@ -33,4 +33,11 @@ node{
     }
         sh 'docker push yessinemallouli/generic-rrweb-recorder:1.0'
     }
+    stage('Run Container on a remote server')
+    {
+        def dockerRun='docker run -t -p 80:8888 --name c2container yessinemallouli/generic-rrweb-recorder:1.0'
+        sshagent(['dev-server']) {
+            sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
+        }
+    }
 }
