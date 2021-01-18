@@ -47,15 +47,12 @@ node{
              if [ ${checkCom} ]; then
                     if [ ${existCom}]; then
                      # cleanup
-                     echo "remove
+                      echo "remove
                     fi
                 # run your container
                  echo "run"
             fi
-                   
-             
-             
-             '''.stripIndent())
+        '''.stripIndent())
         }
         /*sshagent(['dev-server']) {
              
