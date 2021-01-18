@@ -45,12 +45,14 @@ node{
         sshagent(['dev-server']) {
              sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
+                    echo "${checkCom}"
                     if [ ${existCom}]; then
+                    echo "${existCom}"
                      # cleanup
                       ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}
                     fi
                 # run on remote container
-                 ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerRun}
+                ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerRun}
             fi
         '''.stripIndent())
         }
