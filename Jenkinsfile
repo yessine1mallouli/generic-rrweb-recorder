@@ -41,7 +41,7 @@ node{
         sshagent(['dev-server']) {
              sh ( script: '''#!/bin/bash
              
-                    ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}
+                    ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 echo 'hi'}
                     echo "who am i"
         '''.stripIndent())
         
