@@ -36,11 +36,11 @@ node{
         def dockerName='c2container'
         def dockerCheck= "docker ps -q -f name=${dockerName}"
         def dockerExist = "docker ps -aq -f status=exited -f name=${dockerName}"
-        def checkCom= "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
-        def existCom = "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
+        def checkCom= sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
+        def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sshagent(['dev-server']) {
-             if ( sh "${checkCom}"){
-                 if (sh "${existCom}"){
+             if (`checkCom`){
+                 if (`existCom`){
                      sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
                  }
                 sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
