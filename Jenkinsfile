@@ -49,7 +49,7 @@ node{
     docker run -d --name ${dockerName} my-docker-image
 fi'
         '''.stripIndent())
-        }
+        
              
     }/*sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
