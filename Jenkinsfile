@@ -41,7 +41,7 @@ node{
         sshagent(['dev-server']) {
              
             sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 echo 'hi'"
-             
+        }
     }/*sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
                     if [ ${existCom}]; then
