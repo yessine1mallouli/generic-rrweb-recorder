@@ -40,6 +40,7 @@ node{
         //def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sshagent(['dev-server']) {
         sh (returnStdout:true, script: '''#!/bin/bash
+            set +e
              ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' docker rm ${dockerName}'
         '''.stripIndent())
         }
