@@ -40,17 +40,17 @@ node{
         def dockerName='c2container'
         def dockerCheck="docker ps -q -f name=${dockerName}"
         def dockerExist ="docker ps -aq -f status=exited -f name=${dockerName}"
-        def checkCom= "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerCheck}"
+        def checkCom= "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
         def existCom = "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sshagent(['dev-server']) {
              sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
                     if [ ${existCom}]; then
                      # cleanup
-                      ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerDel}
+                      ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}
                     fi
                 # run on remote container
-                 ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerRun}
+                 ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerRun}
             fi
         '''.stripIndent())
         }
