@@ -49,23 +49,10 @@ node{
                      # cleanup
                       ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerDel}
                     fi
-                # run your container
+                # run on remote container
                  ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerDel}
             fi
         '''.stripIndent())
         }
-        /*sshagent(['dev-server']) {
-             
-            sh  "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
-            sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"         
-        }
-        if ( sh $checkCom ){ 
-                if ( sh $existCom ) {
-                    
-                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
-                }
-                sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
-               */
-        
     }
 }
