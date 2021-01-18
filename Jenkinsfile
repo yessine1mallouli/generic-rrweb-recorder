@@ -41,8 +41,8 @@ node{
         def dockerCheck="docker ps -q -f name=${dockerName}"
         sshagent(['dev-server']) {
              
-            if [sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerCheck}" ]; then
-                 if [ "$(docker ps -aq -f status=exited -f name=${dockerName})" ]; then
+            if  ( sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerCheck}" ); then
+                 if ( "$(docker ps -aq -f status=exited -f name=${dockerName})" ); then
                     
                      sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
                  fi
