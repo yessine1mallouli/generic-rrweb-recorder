@@ -40,14 +40,9 @@ node{
         def existCom = "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sshagent(['dev-server']) {
              sh ( script: '''#!/bin/bash
-             if [ ${checkCom} ]; then
-                    if [ ${existCom}]; then
-                     # cleanup
+             
                      ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}
-                    fi
-                # run on remote container
-                #ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerRun}
-            fi
+                   
         '''.stripIndent())
         
         }
