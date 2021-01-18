@@ -41,7 +41,7 @@ node{
         sshagent(['dev-server']) {
         sh (returnStdout:true, script: '''#!/bin/bash
             
-             ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 'docker rm c2container'
+             ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' docker rm $dockerName'
         '''.stripIndent())
         }
              
