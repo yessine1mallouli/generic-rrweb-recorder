@@ -43,7 +43,16 @@ node{
             
              ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' 
              dockerName='c2container'
-             docker rm $dockerName'
+             dockerImageName='yessinemallouli/generic-rrweb-recorder:1.0'
+             docker rm $dockerName
+             if [ ! "$(docker ps -q -f name=$dockerName)" ]; then
+    if [ "$(docker ps -aq -f status=exited -f name=$dockerName)" ]; then
+        # cleanup
+        docker rm <name>
+    fi
+    # run your container
+    docker run -d --name $dockerName $dockerImageName
+fi'
         '''.stripIndent())
         }
              
