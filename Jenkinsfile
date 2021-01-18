@@ -50,7 +50,7 @@ node{
                       ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerDel}
                     fi
                 # run on remote container
-                 ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerDel}
+                 ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerRun}
             fi
         '''.stripIndent())
         }
