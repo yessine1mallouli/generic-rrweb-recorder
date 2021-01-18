@@ -38,13 +38,17 @@ node{
         def dockerExist = "docker ps -aq -f status=exited -f name=${dockerName}"
         def checkCom= sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
         def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
-        sshagent(['dev-server']) {
-             if (`checkCom`){
-                 if (`existCom`){
-                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
-                 }
-                sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
-             }
+        sh (returnStdout:true, script: '''#!/bin/bash
+             ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' 
+             if [ ! "$(docker ps -q -f name=${dockerName})" ]; then
+    if [ "$(docker ps -aq -f status=exited -f name=${dockerName})" ]; then
+        # cleanup
+        docker rm ${dockerName}
+    fi
+    # run your container
+    docker run -d --name ${dockerName} my-docker-image
+fi'
+        '''.stripIndent())
         }
              
     }/*sh (returnStdout:true, script: '''#!/bin/bash
@@ -57,5 +61,13 @@ node{
                 #ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerRun}
             fi
         '''.stripIndent())
+        }*/
+        /*sshagent(['dev-server']) {
+             if (`checkCom`){
+                 if (`existCom`){
+                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
+                 }
+                sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
+             }
         }*/
 }
