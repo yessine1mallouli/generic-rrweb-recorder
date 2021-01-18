@@ -6,7 +6,7 @@ node{
     {
         echo "Build the code"
         nodejs('node') {
-    // some block
+    
     sh "npm install"
 }
     }
@@ -14,7 +14,7 @@ node{
     {
         echo "test the code"
         nodejs('node') {
-    // some block
+    
     sh "npm test"
 }
     }
@@ -42,7 +42,7 @@ node{
                         # cleanup
                         docker rm $dockerName
                     fi
-                 # run your container
+                 # run remote container
                  docker run -t -p 80:8888 --name $dockerName $dockerImageName
             fi'
         '''.stripIndent())
