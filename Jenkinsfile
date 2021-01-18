@@ -40,7 +40,7 @@ node{
         def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sh (returnStdout:true, script: '''#!/bin/bash
              ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' 
-             if [ !"$(docker ps -q -f name=${dockerName})" ]; then
+             if [ "$(docker ps -q -f name=${dockerName})" ]; then
     if [ "$(docker ps -aq -f status=exited -f name=${dockerName})" ]; then
         # cleanup
         docker rm ${dockerName}
