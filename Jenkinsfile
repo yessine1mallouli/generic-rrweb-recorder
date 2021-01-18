@@ -31,48 +31,22 @@ node{
     }
     stage('Run Container on a remote server')
     {
-        def dockerRun='docker run -t -p 80:8888 --name c2container yessinemallouli/generic-rrweb-recorder:1.0'
-        def dockerDel='docker rm c2container'
-        //def dockerName='c2container'
-        //def dockerCheck= "docker ps -q -f name=${dockerName}"
-        //def dockerExist = "docker ps -aq -f status=exited -f name=${dockerName}"
-        //def checkCom= sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
-        //def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sshagent(['dev-server']) {
         sh (returnStdout:true, script: '''#!/bin/bash
             
-             ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' 
-             dockerName='c2container'
-             dockerImageName='yessinemallouli/generic-rrweb-recorder:1.0'
-             docker rm $dockerName
-             if [ ! "$(docker ps -q -f name=$dockerName)" ]; then
-    if [ "$(docker ps -aq -f status=exited -f name=$dockerName)" ]; then
-        # cleanup
-        docker rm $dockerName
-    fi
-    # run your container
-    docker run -d --name $dockerName $dockerImageName
-fi'
+            ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' 
+            dockerName='c2container'
+            dockerImageName='yessinemallouli/generic-rrweb-recorder:1.0'
+            if [ ! "$(docker ps -q -f name=$dockerName)" ]; then
+                    if [ "$(docker ps -aq -f status=exited -f name=$dockerName)" ]; then
+                        # cleanup
+                        docker rm $dockerName
+                    fi
+                 # run your container
+                 docker run -t -p 80:8888 --name $dockerName $dockerImageName
+            fi'
         '''.stripIndent())
         }
              
-    }/*sh (returnStdout:true, script: '''#!/bin/bash
-             if [ ${checkCom} ]; then
-                    if [ ${existCom}]; then
-                     # cleanup
-                     ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}
-                    fi
-                # run on remote container
-                #ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerRun}
-            fi
-        '''.stripIndent())
-        }*/
-        /*sshagent(['dev-server']) {
-             if (`checkCom`){
-                 if (`existCom`){
-                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
-                 }
-                sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
-             }
-        }*/
+    }
 }
