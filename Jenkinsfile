@@ -49,7 +49,7 @@ node{
                 #ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerRun}
             fi
         '''.stripIndent())
-        }
+        
         }
     }/*sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
