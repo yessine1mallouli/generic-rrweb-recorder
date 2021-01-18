@@ -39,7 +39,7 @@ node{
         def checkCom= "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
         def existCom = "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sshagent(['dev-server']) {
-             bash '''#!/bin/bash
+             sh '''#!/bin/sh
             
                     
                      
