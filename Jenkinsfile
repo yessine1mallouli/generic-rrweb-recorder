@@ -46,7 +46,7 @@ node{
                      ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}
                    
               
-        '''.stripIndent())
+        '''
         }
     }/*sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
