@@ -38,10 +38,11 @@ node{
         //def dockerExist = "docker ps -aq -f status=exited -f name=${dockerName}"
         //def checkCom= sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
         //def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
+        sshagent(['dev-server']) {
         sh (returnStdout:true, script: '''#!/bin/bash
              ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' docker rm ${dockerName}'
         '''.stripIndent())
-        
+        }
              
     }/*sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
