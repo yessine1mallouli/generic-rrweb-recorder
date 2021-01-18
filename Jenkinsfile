@@ -37,9 +37,20 @@ node{
     {
         def dockerRun='docker run -t -p 80:8888 --name c2container yessinemallouli/generic-rrweb-recorder:1.0'
         def dockerDel='docker rm c2container'
+        def dockerName='c2container'
+        def dockerCheck="docker ps -q -f name=${dockerName}"
         sshagent(['dev-server']) {
-            sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel} "
-            sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
+             
+            if [ ! sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerCheck}" ]; then
+                 if [ "$(docker ps -aq -f status=exited -f name=${dockerName})" ]; then
+                    
+                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
+                 fi
+                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
+                     
+            fi
+            
         }
+        
     }
 }
