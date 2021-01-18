@@ -18,10 +18,6 @@ node{
     sh "npm test"
 }
     }
-    stage('Delivery')
-    {
-        echo "deliver the code"
-    }
     stage('Build Docker Image')
     {
         sh 'docker build -t yessinemallouli/generic-rrweb-recorder:1.0 .'
@@ -45,9 +41,7 @@ node{
         sshagent(['dev-server']) {
              sh (returnStdout:true, script: '''#!/bin/bash
              if [ ${checkCom} ]; then
-                    echo "${checkCom}"
                     if [ ${existCom}]; then
-                    echo "${existCom}"
                      # cleanup
                       ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}
                     fi
