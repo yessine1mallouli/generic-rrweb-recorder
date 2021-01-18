@@ -34,10 +34,10 @@ node{
         def dockerRun='docker run -t -p 80:8888 --name c2container yessinemallouli/generic-rrweb-recorder:1.0'
         def dockerDel='docker rm c2container'
         def dockerName='c2container'
-        def dockerCheck= "docker ps -q -f name=${dockerName}"
-        def dockerExist = "docker ps -aq -f status=exited -f name=${dockerName}"
-        def checkCom= sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
-        def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
+        //def dockerCheck= "docker ps -q -f name=${dockerName}"
+        //def dockerExist = "docker ps -aq -f status=exited -f name=${dockerName}"
+        //def checkCom= sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ! ${dockerCheck}"
+        //def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sh (returnStdout:true, script: '''#!/bin/bash
              ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ' 
              if [ "$(docker ps -q -f name=${dockerName})" ]; then
