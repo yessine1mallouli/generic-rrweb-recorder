@@ -43,22 +43,32 @@ node{
         def checkCom= "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerCheck}"
         def existCom = "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
         sshagent(['dev-server']) {
+             sh (returnStdout:true, script: '''#!/bin/bash
+             if [ ${checkCom} ]; then
+                    if [ ${existCom}]; then
+                     # cleanup
+                     echo "remove
+                    fi
+                # run your container
+                 echo "run"
+            fi
+                   
              
-            if ( sh $checkCom ){ 
-                if ( sh $existCom ) {
-                    
-                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
-                }
-                sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
-                     
-            }
-            
+             
+             '''.stripIndent())
         }
         /*sshagent(['dev-server']) {
              
             sh  "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
             sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"         
-        }*/
+        }
+        if ( sh $checkCom ){ 
+                if ( sh $existCom ) {
+                    
+                     sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
+                }
+                sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"
+               */
         
     }
 }
