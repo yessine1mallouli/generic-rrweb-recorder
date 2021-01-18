@@ -48,7 +48,7 @@ node{
              if [ ! "$(docker ps -q -f name=$dockerName)" ]; then
     if [ "$(docker ps -aq -f status=exited -f name=$dockerName)" ]; then
         # cleanup
-        docker rm <name>
+        docker rm $dockerName
     fi
     # run your container
     docker run -d --name $dockerName $dockerImageName
