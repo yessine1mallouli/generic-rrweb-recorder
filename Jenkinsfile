@@ -42,7 +42,7 @@ node{
         def dockerExist ="docker ps -aq -f status=exited -f name=${dockerName}"
         def checkCom= sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerCheck}"
         def existCom = sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  ${dockerExist}"
-        sshagent(['dev-server']) {
+        /*sshagent(['dev-server']) {
              
             if ( $checkCom ){ 
                 if ( $existCom ) {
@@ -53,6 +53,11 @@ node{
                      
             }
             
+        }*/
+        sshagent(['dev-server']) {
+             
+            sh  "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerDel}"
+            sh "ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252 ${dockerRun}"         
         }
         
     }
