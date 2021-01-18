@@ -47,10 +47,10 @@ node{
              if [ ${checkCom} ]; then
                     if [ ${existCom}]; then
                      # cleanup
-                      echo "remove"
+                      ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerDel}
                     fi
                 # run your container
-                 echo "run"
+                 ssh -o StrictHostKeyChecking=no ubuntu@15.237.81.252  !${dockerDel}
             fi
         '''.stripIndent())
         }
