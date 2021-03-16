@@ -1,0 +1,15 @@
+In order to access the Jenkins server and put the practices of continuous integration/ delivery and deployment into use :
+ - Connect to the Jenkins server on port 8080
+ - activate the proxy ( in order to push the commits from the github repository to the private jenkins server). 
+      * The proxy: 			https://smee.io/hnn3kBh354ubfLvw
+      * The command to activate the proxy from the jenkins server: smee --url https://smee.io/hnn3kBh354ubfLvw --path /github-webhook/ --port 8080
+
+ - Every change made will appear on the Jenkins server then executed in the deployment server
+
+
+
+To test the containers on the deployment server we could use ( since the container exits instantaneously after running):
+
+docker start  `docker ps -q -l` # restart it in the background
+docker attach `docker ps -q -l` # reattach the terminal & stdin
+ 
